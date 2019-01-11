@@ -1,12 +1,51 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
-import * as serviceWorker from './serviceWorker';
+import Season from './season';
 
-ReactDOM.render(<App />, document.getElementById('root'));
+const App = () => {
+  // check for Geolocation support
+  var lon = 0;
+  var lat = 0;
 
-// If you want your app to work offline and load faster, you can change
-// unregister() to register() below. Note this comes with some pitfalls.
-// Learn more about service workers: http://bit.ly/CRA-PWA
-serviceWorker.unregister();
+  window.onload = function() {
+    if (navigator.geolocation) {
+      console.log('Geolocation is supported!');
+    }
+    else {
+      console.log('Geolocation is not supported for this Browser/OS.');
+    }
+  };
+  
+  window.onmouseover = function() {
+    var startPos = 0;
+    var geoSuccess = function(position) {
+      startPos = position;
+      lon = startPos.coords.longitude;
+      lat = startPos.coords.latitude;
+      console.log("lat is", startPos.coords.latitude, "long is", startPos.coords.longitude);
+      console.log(navigator.geolocation);
+      //document.getElementById('startLat').innerHTML = startPos.coords.latitude;
+      //document.getElementById('startLon').innerHTML = startPos.coords.longitude;
+    };
+    navigator.geolocation.getCurrentPosition(geoSuccess);
+  };
+
+  window.onmousedown = function(event) {
+    console.log('in the aapp');
+    lon = 'XXX';
+    lat = 'YYY';
+  }
+
+  return (
+    <div>
+      yolo
+      <Season />
+      { lon }{ lat }
+    </div>
+  )
+};
+
+ReactDOM.render(
+  <App />,
+  document.querySelector('#root')
+);
