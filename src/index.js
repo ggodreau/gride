@@ -3,6 +3,14 @@ import ReactDOM from "react-dom";
 import Season from "./season";
 
 class App extends React.Component {
+  constructor(props) {
+    super(props);
+    console.log("constructed AF");
+    this.state = {
+      lat: 99,
+      lon: 0
+    };
+  }
   render() {
     var lat = 0;
     var lon = 0;
@@ -36,8 +44,8 @@ class App extends React.Component {
     //the below data binding does not update the state
     return (
       <div>
-        what the {lat}
-        {lon} hell
+        what the {this.state.lat}
+        {this.state.lon} hell
       </div>
     );
   }
