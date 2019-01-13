@@ -2,6 +2,7 @@ import "./index.css";
 import React from "react";
 import ReactDOM from "react-dom";
 import Season from "./season";
+import Spinner from "./spinner";
 
 class App extends React.Component {
   constructor(props) {
@@ -54,13 +55,7 @@ class App extends React.Component {
     if (!this.state.lat && !this.state.lon && this.state.err) {
       return <div>err is {this.state.err}</div>;
     }
-    return (
-      <div class="ui segment" className="fullscreen">
-        <div class="ui active centered inline dimmer">
-          <div class="ui massive loader">Choading...</div>
-        </div>
-      </div>
-    );
+    return <Spinner />;
   }
 }
 
