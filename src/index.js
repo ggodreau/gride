@@ -46,13 +46,30 @@ class App extends React.Component {
     //the below data binding does not update the state
     return (
       <div>
-        lat is {this.state.lat}
-        <br />
-        lon is {this.state.lon}
-        <br />
-        acc is {this.state.acc}
-        <br />
-        err is {this.state.err}
+        {this.state.lat != null && (
+          <span>
+            lat is {this.state.lat}
+            <br />
+          </span>
+        )}
+        {this.state.lon != null && (
+          <span>
+            lon is {this.state.lon}
+            <br />
+          </span>
+        )}
+        {this.state.acc != null && (
+          <span>
+            acc is {this.state.acc}
+            <br />
+          </span>
+        )}
+        {this.state.err != null && (
+          <span>
+            err is {this.state.err}
+            <br />
+          </span>
+        )}
       </div>
     );
   }
