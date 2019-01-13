@@ -1,3 +1,5 @@
+// the css import MUST come BEFORE the react import
+import "./season.css";
 import React from "react";
 
 const seasonConfig = {
@@ -27,11 +29,18 @@ class Season extends React.Component {
   }
   render() {
     return (
-      <div>
+      <div className={`${getSeason(this.props.lat)}`}>
         <h1>
-          {seasonConfig[getSeason(this.props.lat)].text}
           <i
-            className={`${
+            className={`icon-left massive ${
+              seasonConfig[getSeason(this.props.lat)].iconName
+            } icon`}
+          />
+          <p className="text-format">
+            {seasonConfig[getSeason(this.props.lat)].text}
+          </p>
+          <i
+            className={`icon-right massive ${
               seasonConfig[getSeason(this.props.lat)].iconName
             } icon`}
           />
