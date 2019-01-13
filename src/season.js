@@ -19,6 +19,12 @@ class Season extends React.Component {
       <div>
         foo lat is {this.props.lat} lon is {this.props.lon}
         month is {getSeason(this.props.lat)}
+        <br />
+        {getSeason(this.props.lat) === "winter" ? (
+          <h1>it's cold af</h1>
+        ) : (
+          <h1>it's hot af</h1>
+        )}
       </div>
     );
   }
