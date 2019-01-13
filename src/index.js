@@ -41,6 +41,9 @@ class App extends React.Component {
   componentDidMount() {
     console.log("component mount!");
   }
+  componentDidUpdate() {
+    console.log("component updated!");
+  }
   render() {
     console.log("props is like", this.props);
     //the below data binding does not update the state
@@ -60,4 +63,4 @@ class App extends React.Component {
   }
 }
 
-ReactDOM.render(<App />, document.querySelector("#root"));
+ReactDOM.render(<App myProp="propVal" />, document.querySelector("#root"));
