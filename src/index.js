@@ -1,19 +1,26 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import Season from "./season";
+//import Season from "./season";
 
 class App extends React.Component {
   constructor(props) {
     super(props);
-    console.log("constructed AF");
     this.state = {
-      lat: 99,
-      lon: 0
+      lat: null,
+      lon: null,
+      acc: null
     };
-  }
-  render() {
-    var lat = 0;
-    var lon = 0;
+    console.log("constructed AF");
+
+    navigator.geolocation.getCurrentPosition(Position => {
+      console.log("Position obj is", Position);
+      console.log("lat is", Position.coords.latitude);
+      this.setState({
+        lat: Position.coords.latitude,
+        lon: Position.coords.longitude,
+        acc: Position.coords.accuracy
+      });
+    });
 
     window.onload = function() {
       if (navigator.geolocation) {
@@ -22,30 +29,16 @@ class App extends React.Component {
         console.log("Geolocation is not supported for this Browser/OS.");
       }
     };
-
-    window.onmouseover = function() {
-      var startPos = 0;
-      var geoSuccess = function(position) {
-        startPos = position;
-        lon = startPos.coords.longitude;
-        lat = startPos.coords.latitude;
-        console.log(
-          "lat is",
-          startPos.coords.latitude,
-          "long is",
-          startPos.coords.longitude
-        );
-        console.log(navigator.geolocation);
-        //document.getElementById('startLat').innerHTML = startPos.coords.latitude;
-        //document.getElementById('startLon').innerHTML = startPos.coords.longitude;
-      };
-      navigator.geolocation.getCurrentPosition(geoSuccess);
-    };
+  }
+  componentDidMount() {
+    console.log("component mount!");
+  }
+  render() {
+    console.log("props is like", this.props);
     //the below data binding does not update the state
     return (
       <div>
-        what the {this.state.lat}
-        {this.state.lon} hell
+        lat is {this.state.lat} lon is {this.state.lon} acc is {this.state.acc}
       </div>
     );
   }
