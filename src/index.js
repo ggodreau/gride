@@ -1,6 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom";
-//import Season from "./season";
+import Season from "./season";
 
 class App extends React.Component {
   constructor(props) {
@@ -13,6 +13,17 @@ class App extends React.Component {
     };
     console.log("constructed AF");
 
+    window.onload = function() {
+      if (navigator.geolocation) {
+        console.log("Geolocation is supported!");
+      } else {
+        console.log("Geolocation is not supported for this Browser/OS.");
+      }
+    };
+  }
+  // good for one-shot data loading, don't use the constructor
+  componentDidMount() {
+    console.log("component mount!");
     navigator.geolocation.getCurrentPosition(
       Position => {
         console.log("Position obj is", Position);
@@ -29,17 +40,6 @@ class App extends React.Component {
         });
       }
     );
-
-    window.onload = function() {
-      if (navigator.geolocation) {
-        console.log("Geolocation is supported!");
-      } else {
-        console.log("Geolocation is not supported for this Browser/OS.");
-      }
-    };
-  }
-  componentDidMount() {
-    console.log("component mount!");
   }
   componentDidUpdate() {
     console.log("component updated!");
@@ -48,13 +48,7 @@ class App extends React.Component {
     console.log("props is like", this.props);
     //the below data binding does not update the state
     if (this.state.lat && this.state.lon && !this.state.err) {
-      return (
-        <div>
-          lat is {this.state.lat}
-          <br />
-          lon is {this.state.lon}
-        </div>
-      );
+      return <Season lat={this.state.lat} lon={this.state.lon} />;
     }
     if (!this.state.lat && !this.state.lon && this.state.err) {
       return <div>err is {this.state.err}</div>;
