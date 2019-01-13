@@ -44,34 +44,19 @@ class App extends React.Component {
   render() {
     console.log("props is like", this.props);
     //the below data binding does not update the state
-    return (
-      <div>
-        {this.state.lat != null && (
-          <span>
-            lat is {this.state.lat}
-            <br />
-          </span>
-        )}
-        {this.state.lon != null && (
-          <span>
-            lon is {this.state.lon}
-            <br />
-          </span>
-        )}
-        {this.state.acc != null && (
-          <span>
-            acc is {this.state.acc}
-            <br />
-          </span>
-        )}
-        {this.state.err != null && (
-          <span>
-            err is {this.state.err}
-            <br />
-          </span>
-        )}
-      </div>
-    );
+    if (this.state.lat && this.state.lon && !this.state.err) {
+      return (
+        <div>
+          lat is {this.state.lat}
+          <br />
+          lon is {this.state.lon}
+        </div>
+      );
+    }
+    if (!this.state.lat && !this.state.lon && this.state.err) {
+      return <div>err is {this.state.err}</div>;
+    }
+    return <div>loadeng...</div>;
   }
 }
 
