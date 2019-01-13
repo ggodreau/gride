@@ -1,5 +1,16 @@
 import React from "react";
 
+const seasonConfig = {
+  summer: {
+    text: "it's hot af",
+    iconName: "fire"
+  },
+  winter: {
+    text: "it's cold af",
+    iconName: "snowflake"
+  }
+};
+
 let getSeason = function(lat) {
   let month = new Date().getMonth();
   if (month > 2 && month < 9) {
@@ -17,14 +28,14 @@ class Season extends React.Component {
   render() {
     return (
       <div>
-        foo lat is {this.props.lat} lon is {this.props.lon}
-        month is {getSeason(this.props.lat)}
-        <br />
-        {getSeason(this.props.lat) === "winter" ? (
-          <h1>it's cold af</h1>
-        ) : (
-          <h1>it's hot af</h1>
-        )}
+        <h1>
+          {seasonConfig[getSeason(this.props.lat)].text}
+          <i
+            className={`${
+              seasonConfig[getSeason(this.props.lat)].iconName
+            } icon`}
+          />
+        </h1>
       </div>
     );
   }
