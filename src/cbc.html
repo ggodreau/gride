@@ -1,35 +1,34 @@
 <script type="text/babel" data-presets="env,react">
     class Clock extends React.Component {
-        componentDidMount() {
-            setInterval(() => {
-                this.time = new Date().toLocaleTimeString()
-            }, 1000)
+      constructor(props){
+        super(props);
+        this.state = {
+          time: new Date().toLocaleTimeString()
         }
+      };
+      componentDidMount() {
+         var intervalID = window.setInterval(myFunc, 500);
+         var myFunc = () => {
+           this.setState({time: new Date().toLocaleTimeString()});
+           console.log(this.state.time);
+         };
+         setInterval(myFunc, 1000);
+      }
 
-        render() {
-            return (
-                <div className="time">
-                    The time is: {this.time}
-                </div>
-            );
-        }
+      render() {
+        return (
+          <div className="time">
+            The time is: {this.state.time}
+          </div>
+        );
+      }
     }
-
 
     // Renders the App component into a div with id 'root'
     ReactDOM.render(<Clock />, document.querySelector('#root'));
 </script>
-
-
-
-
-
-
 <!--The App component above will be rendered into this-->
 <div id="root"></div>
-
-
-<!--No need to change anything after this line!-->
 <!--No need to change anything after this line!-->
 <script crossorigin src="https://cdnjs.cloudflare.com/ajax/libs/babel-polyfill/7.0.0/polyfill.min.js"></script>
 <script crossorigin src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
