@@ -1,29 +1,26 @@
 <script type="text/babel" data-presets="env,react">
     class Clock extends React.Component {
       constructor(props){
-        super(props);
-        this.state = {
-          time: new Date().toLocaleTimeString()
-        }
-      };
-      componentDidMount() {
-         var intervalID = window.setInterval(myFunc, 500);
+         super(props);
+         this.state = {
+           time: new Date().toLocaleTimeString()
+         }
+       };
+       componentDidMount() {
          var myFunc = () => {
            this.setState({time: new Date().toLocaleTimeString()});
            console.log(this.state.time);
          };
          setInterval(myFunc, 1000);
-      }
-
-      render() {
-        return (
-          <div className="time">
-            The time is: {this.state.time}
-          </div>
-        );
-      }
-    }
-
+       }
+       render() {
+         return (
+           <div className="time">
+             The time is: {this.state.time}
+           </div>
+         );
+       }
+     }
     // Renders the App component into a div with id 'root'
     ReactDOM.render(<Clock />, document.querySelector('#root'));
 </script>
