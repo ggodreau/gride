@@ -1,9 +1,7 @@
 import React from "react";
 
 class SearchBar extends React.Component {
-  onSearchChange(e) {
-    console.log("changed:", e.target.value);
-  }
+  state = { inputText: "foo" };
 
   render() {
     return (
@@ -48,7 +46,11 @@ class SearchBar extends React.Component {
           </ul>
           <form className="form-inline my-2 my-lg-0">
             <input
-              onChange={this.onSearchChange}
+              onChange={e => {
+                this.setState({ inputText: e.target.value });
+                console.log(this.state.inputText);
+              }}
+              value={this.state.inputText}
               className="form-control mr-sm-2"
               type="text"
               placeholder="Search"
