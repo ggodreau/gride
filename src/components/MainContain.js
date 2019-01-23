@@ -9,12 +9,11 @@ class MainContain extends React.Component {
   }
 
   render() {
-    console.log(this.state.divStyle);
     return (
       <div style={this.state.divStyle}>
-        <div class="jumbotron">
-          <h1 class="display-3">Find Your Vehicle</h1>
-          <p class="lead">
+        <div className="jumbotron">
+          <h1 className="display-3">Find Your Vehicle</h1>
+          <p className="lead">
             This is a simple app for locating a vehicle from an API.
           </p>
         </div>
