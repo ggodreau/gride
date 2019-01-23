@@ -1,11 +1,12 @@
 import React from "react";
 import SearchBar from "./SearchBar";
+import MainContain from "./MainContain";
 
 const App = () => {
   return (
     <div>
-      <h1>foo</h1>
       <SearchBar />
+      <MainContain />
     </div>
   );
 };
